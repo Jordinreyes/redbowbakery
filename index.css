@@ -1,0 +1,16 @@
+
+    @media (min-width: 768px) {
+        .section-content {
+            max-height: none !important;
+        }
+    }
+
+    @media (max-width: 767px) {
+        .section-content {
+            max-height: 0;
+        }
+
+        .section-content.hidden-section {
+            pointer-events: none;
+        }
+    }

@@ -16,30 +16,1526 @@
 
     <title>Red Bow Bakery | Cake Pops, Tiramisú y Repostería</title>
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
+    >
     <link rel="stylesheet" href="index.css">
     <link rel="canonical" href="https://www.redbowbakery.com/">
+    <link rel="icon" type="image/png" href="pictures/favicon/favicon.png">
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="index.js"></script>
 </head>
 <body>
-    <header id="header">
-        <a href="https://redbowbakery.rredbowbakery.workers.dev" aria-label="Red Bow bakery" id="logo">
-            <img src="https://redbowbakery.rredbowbakery.workers.dev/pictures/logo.png" alt="Logo de Red Bow Bakery">
+    <!-- HEADER     -->
+    <header
+        id="header"
+        class="mx-auto flex max-w-6xl flex-col items-center gap-5 px-6 py-8 text-center md:flex-row md:justify-center md:gap-8 md:text-left"
+    >
+        <a
+            href="https://redbowbakery.rredbowbakery.workers.dev"
+            aria-label="Red Bow bakery"
+            id="logo"
+            class="shrink-0"
+        >
+            <img
+                src="https://redbowbakery.rredbowbakery.workers.dev/pictures/logo.png"
+                alt="Logo de Red Bow Bakery"
+                class="w-36 md:w-44"
+            >
         </a>
 
-        <div>
-            <h1 id="page-title">Red Bow Bakery: Cake Pops, Tiramisú y Repostería Artesanal</h1>
-            <p id="page-description">Haz tu pedido hoy y disfruta de nuestros deliciosos cakepops, tiramisú y más.</p>
+        <div class="max-w-2xl">
+            <h1
+                id="page-title"
+                class="text-2xl font-bold leading-tight md:text-3xl lg:text-4xl"
+            >
+                Red Bow Bakery: Cake Pops, Tiramisú y Repostería Artesanal
+            </h1>
+
+            <p
+                id="page-description"
+                class="mt-3 text-base text-gray-600 md:text-lg"
+            >
+                Haz tu pedido hoy y disfruta de nuestros deliciosos cakepops,
+                tiramisú y más.
+            </p>
         </div>
     </header>
 
+    <!-- MAIN CONTENT -->
     <main id="main">
-        <section id="showpage" >
+        <!-- SECCION  DE PRODUCTOS -->
+        <section id="shopPage" class="page active mx-auto w-full max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+            <!-- HALLOWEEN -->
+            <section class="mb-12">
+                <h2 class="mb-6 text-2xl font-bold text-gray-900">
+                    🎃 Novedad Halloween
+                </h2>
+
+                <div class="grid grid-cols-1 items-start gap-6 md:grid-cols-2 lg:grid-cols-3">
+
+                    <!-- PRODUCTO NOVEDAD HALLOWEEN -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('pictures/halloween/cake-pops-de-halloween-fondant.jpg', 'Halloween Cake Pop Calabaza')"
+                            aria-label="Ver imagen de Calabaza"
+                        >
+                            <img
+                                src="pictures/halloween/cake-pops-de-halloween-fondant.jpg"
+                                alt="Halloween Cake Pop Calabaza"
+                                class="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold text-gray-900">
+                                Halloween Cake Pop
+                            </h3>
+
+                            <div class="mt-1 text-sm text-gray-500 font-bold">
+                                Pack de 6 cake pops
+                            </div>
+
+                            <div class="mt-1 text-sm text-gray-500 f">
+                                Dulces, Divertidos y Terroríficamente Deliciosos. ¡Celebra Halloween con nuestros Cake Pops de Calabaza!
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                12,00 €
+                            </span>
+
+                            <label
+                                for="quantity-halloween-calabaza"
+                                class="mt-4 block text-sm font-medium text-gray-700"
+                            >
+                                Cantidad
+                            </label>
+
+                            <input
+                                id="quantity-halloween-calabaza"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 outline-none transition focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white transition hover:bg-red-700"
+                                onclick="addProduct('Halloween Cake Pop Calabaza', 12, 'quantity-halloween-calabaza')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- HALLOWEEN NOVEDAD -->
+                    <article
+                        class="hidden h-[580px] overflow-hidden rounded-2xl bg-transparent transition hover:-translate-y-1 md:block"
+                    >
+                        <button
+                            type="button"
+                            class="group block h-full w-full cursor-zoom-in"
+                            onclick="openImage('pictures/halloween/novedad_halloween.jpeg', 'Halloween Cake Pop Calabaza')"
+                            aria-label="Ver imagen de Calabaza"
+                        >
+                            <img
+                                src="pictures/halloween/novedad_halloween.jpeg"
+                                alt="Halloween Cake Pop Calabaza"
+                                class="h-full w-full object-fit transition duration-300 group-hover:scale-105 rounded-4xl"
+                            >
+                        </button>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CAKE POPS -->
+            <section class="mb-12">
+                <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Cake Pops</span>
+
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+
+                <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >
+
+                    <!-- CHOCOLATE AND WHITE CHOCO -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/choco_and_white.png', 'Cake Pop Chocolate y Blanco')"
+                            aria-label="Ver imagen de Cake Pop Chocolate y Blanco"
+                        >
+                            <img
+                                src="/pictures/cakepops/choco_and_white.png"
+                                alt="Cake Pop de chocolate and chocolate blanco"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Choco o white choco</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de chocolate
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-chocolate"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-chocolate"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Chocolate', 2, 'quantity-chocolate')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+
+                    <!-- VAINILLA -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/vainillas.png', 'Cake Pop Vainilla')"
+                            aria-label="Ver imagen de Cake Pop Vainilla"
+                        >
+                            <img
+                                src="/pictures/cakepops/vainillas.png"
+                                alt="Cake Pop de vainilla"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Vainilla</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de vainilla
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-vainilla"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-vainilla"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Vainilla', 2, 'quantity-vainilla')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+
+                    <!-- OREO -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/oreo.png', 'Cake Pop Oreo')"
+                            aria-label="Ver imagen de Cake Pop Oreo"
+                        >
+                            <img
+                                src="/pictures/cakepops/oreo.png"
+                                alt="Cake Pop de Oreo"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Oreo</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de Oreo
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-oreo"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-oreo"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Oreo', 2, 'quantity-oreo')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+
+                    <!-- RED VELVET -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/redvelvet.png', 'Cake Pop Red velvet')"
+                            aria-label="Ver imagen de Cake Pop Red velvet"
+                        >
+                            <img
+                                src="/pictures/cakepops/redvelvet.png"
+                                alt="Cake Pop de Red velvet"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Red velvet</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de Red velvet
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-red-velvet"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-red-velvet"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Red Velvet', 2, 'quantity-red-velvet')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- DINOSAURUS -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/dinosaurus.png', 'Cake Pop Dinosaurio')"
+                            aria-label="Ver imagen de Cake Pop Dinosaurio"
+                        >
+                            <img
+                                src="/pictures/cakepops/dinosaurus.png"
+                                alt="Cake Pop de Dinosaurio"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Dinosaurio</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de Dinosaurio
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-oreo"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-dinosaurio"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Dinosaurio', 2, 'quantity-dinosaurio')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CHIPS AHOY -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/chips_ahoy.png', 'Cake Pop Chips Ahoy')"
+                            aria-label="Ver imagen de Cake Pop Chips Ahoy"
+                        >
+                            <img
+                                src="/pictures/cakepops/chips_ahoy.png"
+                                alt="Cake Pop de Chips Ahoy"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Chips Ahoy</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de Chips Ahoy
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-oreo"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-chips-ahoy"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Chips Ahoy', 2, 'quantity-chips-ahoy')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- PISTACHO -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cakepops/pistacho.png', 'Cake Pop Pistacho')"
+                            aria-label="Ver imagen de Cake Pop Pistacho"
+                        >
+                            <img
+                                src="/pictures/cakepops/pistacho.png"
+                                alt="Cake Pop de Pistacho"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Pistacho</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cake Pop de Pistacho
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                2,00 €
+                            </span>
+
+                            <label
+                                for="quantity-oreo"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-pistacho"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cake Pop Pistacho', 2, 'quantity-pistacho')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- DOT CAKES-->
+            <section class="mb-12">
+               <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Dot cakes</span>
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+
+                <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >                    
+                    <!-- VAINILLA -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/dot_cakes/vainilla.png', 'Mini Dot Cakes Vainilla')"
+                        >
+                            <img
+                                src="/pictures/dot_cakes/vainilla.png"
+                                alt="Mini dot cakes de vainilla"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Vainilla</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Mini dot cakes de vainilla
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-dot_cakes-vainilla"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-dot_cakes-vainilla"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Dot Cakes Vainilla', 5.0, 'quantity-dot_cakes-vainilla')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CHOCOLATE -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/dot_cakes/chocolate.png', 'Mini Dot Cakes Chocolate')"
+                        >
+                            <img
+                                src="/pictures/dot_cakes/chocolate.png"
+                                alt="Mini dot cakes de chocolate"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Chocolate</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Mini dot cakes de chocolate
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-dot_cakes-chocolate"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-dot_cakes-chocolate"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Dot Cakes Chocolate', 5.0, 'quantity-dot_cakes-chocolate')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- CHOCOLATE BLANCO -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/dot_cakes/chocolate_blanco.png', 'Mini Dot Cakes Blanco')"
+                        >
+                            <img
+                                src="/pictures/dot_cakes/chocolate_blanco.png"
+                                alt="Mini dot cakes de blanco"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Chocolate Blanco</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Mini dot cakes de Chocolate Blanco
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-chocolate-blanco"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-chocolate-blanco"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Dot Cakes Chocolate Blanco', 5.0, 'quantity-chocolate-blanco')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- RED VELVET -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/dot_cakes/red_velvet.png', 'Mini Dot Cakes Red Velvet')"
+                        >
+                            <img
+                                src="/pictures/dot_cakes/red_velvet.png"
+                                alt="Mini dot red velvet"
+                                class="h-64 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Red Velvet</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Mini dot cakes de red velvet
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-dotcakes-red-velvet"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-dotcakes-red-velvet"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Dot Cakes Red Velvet', 5.0, 'quantity-dotcakes-red-velvet')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CHEESECAKE -->
+            <section class="mb-12">
+                <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Mini Cheesecake</span>
+
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+
+                <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <!-- FOTO DE VARIOS SABORES -->
+                    <article
+                        class="hidden h-[580px] overflow-hidden rounded-2xl bg-transparent transition hover:-translate-y-1 md:block"
+                    >
+                        <button
+                            type="button"
+                            class="group block h-full w-full cursor-zoom-in"
+                            onclick="openImage('pictures/cheescake/cheescake.png', 'Mini Cheesecake')"
+                            aria-label="Ver imagen de Mini Cheesecake"
+                        >
+                            <img
+                                src="pictures/cheescake/cheescake.png"'
+                                alt="Mini Cheesecake"
+                                class="h-full w-full object-fit transition duration-300 group-hover:scale-105 rounded-4xl"
+                            >
+                        </button>
+                    </article>
+
+                    <!-- CAKE Tradiccional -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cheescake/mini_cheescake.png', 'Mini Cheesecake')"
+                        >
+                            <img
+                                src="/pictures/cheescake/mini_cheescake.png"
+                                alt="Mini cheesecake"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Cheesecake Tradiccional</h3>
+                            <div class="mt-1 text-sm text-gray-500">
+                                Mini cheesecake
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-cheesecake-fresa"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-cheesecake"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <label
+                                for="flavor-cheesecake"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Sabor a elegir: 
+                            </label>
+
+                            <input
+                                id="flavor-cheesecake"
+                                type="text"
+                                required
+                                placeholder="Ej: Oreo, Fresa, Lotus..."
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 placeholder:text-gray-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Cheesecake', 5, 'quantity-cheesecake-')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+
+                    <!-- TRADICCIONAL PARA COMPARTIR -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cheescake/chees_compartir.png', 'Cheesecake Tradicional')"
+                        >
+                            <img
+                                src="/pictures/cheescake/chees_compartir.png"
+                                alt="cheesecake para compartir"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Cheesecake Tradiccional</h3>
+
+                            <div class="mt-1 text-sm text-gray-500 font-bold">
+                                Cheesecake Tradiccional para compartir <span class="text-sm font-bold text-black">(6 personas)</span>
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                15,00 €
+                            </span>
+
+                            <label
+                                for="quantity_cheesecake-para-compartir"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad
+                            </label>
+
+                            <input
+                                id="quantity_cheesecake-para-compartir"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <label
+                                for="flavor-cheesecake"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Sabor a elegir: 
+                            </label>
+
+                            <input
+                                id="flavor-cheesecake"
+                                type="text"
+                                required
+                                placeholder="Ej: Oreo, Fresa, Lotus..."
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 placeholder:text-gray-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cheesecake Tradicional', 15.00, 'quantity_cheesecake-para-compartir')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- TIRAMISÚ -->
+            <section class="mb-12">
+                <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Mini Tiramisús</span>
+
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+
+                <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <!-- TIRAMISÚ TRADICIONAL -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/tiramisu/tiramisu.png', 'Mini Tiramisú Clásico')"
+                        >
+                            <img
+                                src="/pictures/tiramisu/tiramisu.png"
+                                alt="Mini Tiramisú Clásico"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Clásico</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Tiramisú tradicional
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                5,00 €
+                            </span>
+
+                            <label
+                                for="quantity-tiramisu"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-tiramisu"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Tiramisú Clásico', 5.00, 'quantity-tiramisu')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+
+                    <!-- TIRAMISÚ PARA COMPARTIR -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/tiramisu/tiramisu_compartir.png', 'Mini Tiramisú Clásico compartir')"
+                        >
+                            <img
+                                src="/pictures/tiramisu/tiramisu_compartir.png"
+                                alt="Mini Tiramisú Clásico compartir"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Clásico</h3>
+
+                            <div class="mt-1 text-sm text-gray-500 font-bold">
+                                Tiramisú tradicional para compartir <span class="text-sm font-bold text-black">(6 personas)</span>
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                15,00 €
+                            </span>
+
+                            <label
+                                for="quantity-tiramisu-compartir"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad:
+                            </label>
+
+                            <input
+                                id="quantity-tiramisu-compartir"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Tiramisú Clásico compartir', 15.00, 'quantity-tiramisu-compartir')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- MINI BANANA BREAD -->
+            <section class="mb-12">
+                <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Mini Banana Bread</span>
+
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+               <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >
+                    <!-- MINI BANANA BREAD -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/banana_bread/banana_bread.png', 'Mini Banana Bread')"
+                        >
+                            <img
+                                src="/pictures/banana_bread/banana_bread.png"
+                                alt="Mini Banana Bread"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Banana Bread</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Banana Bread Tradiccional
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                4,00 €
+                            </span>
+
+                            <label
+                                for="quantity-banana-bread"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-banana-bread"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Mini Banana Bread', 4, 'quantity-banana-bread')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CUPCAKES -->
+            <section class="mb-12">
+                <button
+                    type="button"
+                    onclick="toggleSection(this)"
+                    class="flex w-full items-center justify-between text-left text-2xl font-bold text-gray-900 md:cursor-default"
+                >
+                    <span>Cupcakes</span>
+
+                    <i
+                        class="bi bi-chevron-down text-xl transition-transform duration-300 md:hidden"
+                    ></i>
+                </button>
+
+               <div
+                    class="section-content grid grid-cols-1 gap-6 overflow-hidden transition-all duration-500 ease-in-out md:grid-cols-2 lg:grid-cols-3"
+                >
+
+                    <!-- COMBOS DE CUPCAKES -->
+                    <article
+                        class="hidden h-[580px] overflow-hidden rounded-2xl bg-transparent transition hover:-translate-y-1 md:block"
+                    >
+                        <button
+                            type="button"
+                            class="group block h-full w-full cursor-zoom-in"
+                            onclick="openImage('pictures/cupcakes/cupcakes_Sabores.png', 'cupcakes de sabores')"
+                            aria-label="Ver imagen de cupcakes de sabores"
+                        >
+                            <img
+                                src="pictures/cupcakes/cupcakes_Sabores.png"
+                                alt="cupcakes de sabores"
+                                class="h-full w-full object-fit transition duration-300 group-hover:scale-105 rounded-4xl"
+                            >
+                        </button>
+                    </article>
+
+                    <!-- CUPCAKE TRADICCIONAL -->
+                    <article class="overflow-hidden rounded-2xl bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+                        <button
+                            type="button"
+                            class="group block w-full cursor-zoom-in"
+                            onclick="openImage('/pictures/cupcakes/cupcakes.png', 'Cupcake Tradicional')"
+                        >
+                            <img
+                                src="/pictures/cupcakes/cupcakes.png"
+                                alt="Cupcake Tradicional"
+                                class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
+                            >
+                        </button>
+
+                        <div class="p-5">
+                            <h3 class="text-xl font-bold">Cupcake</h3>
+
+                            <div class="mt-1 text-sm text-gray-500">
+                                Cupcake Tradiccionales <span class="text-sm font-bold text-black">(12 unidades)</span>
+                            </div>
+
+                            <span class="mt-3 block text-xl font-bold">
+                                25,00 €
+                            </span>
+
+                            <label
+                                for="quantity-cupcake"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Cantidad: 
+                            </label>
+
+                            <input
+                                id="quantity-cupcake"
+                                type="number"
+                                min="1"
+                                step="1"
+                                value="1"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <label
+                                    for="flavor-cupcake"
+                                    class="mt-4 block text-sm font-medium"
+                                >
+                                    Sabor a elegir: 
+                            </label>
+
+                            <input
+                                    id="flavor-cupcake"
+                                    type="text"
+                                    required
+                                    placeholder="Ej: Oreo, Fresa, Lotus..."
+                                    class="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 placeholder:text-gray-400 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+
+                            <label
+                                for="sponge-cupcake"
+                                class="mt-4 block text-sm font-medium"
+                            >
+                                Bizcocho a elegir:
+                            </label>
+
+                            <select
+                                id="sponge-cupcake"
+                                required
+                                class="mt-1 w-full rounded-lg border border-gray-300 bg-white px-3 py-2 focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                            >
+                                <option value="" disabled selected>
+                                    Selecciona un bizcocho: 
+                                </option>
+                                <option value="vainilla">Vainilla</option>
+                                <option value="red_velvet">Red Velvet</option>
+                                <option value="chocolate">Chocolate</option>
+                            </select>
+
+                            <button
+                                type="button"
+                                class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                                onclick="addProduct('Cupcake Tradicional', 25, 'quantity-cupcake')"
+                            >
+                                Añadir
+                            </button>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- CARRITO -->
+
+            <section class="mx-auto max-w-3xl rounded-2xl bg-white p-5 shadow-lg sm:p-8">
+
+                <h2 class="mb-6 text-2xl font-bold">
+                🛒 Resumen de mi pedido
+                </h2>
+
+                <div
+                id="cart"
+                class="mb-6"
+                >
+                <div class="rounded-lg bg-gray-50 p-4 text-center text-gray-500">
+                    Todavía no has añadido ningún producto.
+                </div>
+                </div>
+
+                <div class="mb-8 flex items-center justify-between border-t pt-5 text-xl font-bold">
+                <span>Total:</span>
+                <span id="total">0,00 €</span>
+                </div>
+
+
+                <h2 class="mb-6 text-2xl font-bold">
+                📋 Datos del pedido
+                </h2>
+
+
+                <div class="space-y-5">
+
+                <div>
+                    <label
+                    for="name"
+                    class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                    Nombre
+                    </label>
+
+                    <input
+                    id="name"
+                    placeholder="Tu nombre"
+                    autocomplete="name"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    >
+                </div>
+
+
+                <div>
+                    <label
+                    for="phone"
+                    class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                    Teléfono
+                    </label>
+
+                    <input
+                    id="phone"
+                    type="tel"
+                    placeholder="Tu teléfono"
+                    autocomplete="tel"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    >
+                </div>
+
+
+                <div>
+                    <label
+                    for="email"
+                    class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                    Email (obligatorio para recibir la copia)
+                    </label>
+
+                    <input
+                    id="email"
+                    type="email"
+                    placeholder="tu@email.com"
+                    autocomplete="email"
+                    required
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    >
+                </div>
+
+
+                <div>
+                    <label
+                    for="address"
+                    class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                    Dirección
+                    </label>
+
+                    <input
+                    id="address"
+                    type="text"
+                    placeholder="Calle, número, ciudad..."
+                    autocomplete="street-address"
+                    required
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    >
+                </div>
+
+
+                <div>
+                    <label
+                    for="notes"
+                    class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                    Notas (opcional)
+                    </label>
+
+                    <textarea
+                    id="notes"
+                    rows="4"
+                    placeholder="Ej.: recoger el sábado, alergias, decoración..."
+                    class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    ></textarea>
+                </div>
+
+
+                <div>
+                    <span class="mb-3 block text-sm font-medium text-gray-700">
+                    Método de pago
+                    </span>
+
+                    <div class="grid gap-3 sm:grid-cols-3">
+
+                    <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 p-3 transition hover:bg-gray-50">
+                        <input
+                        type="radio"
+                        name="payment"
+                        value="Efectivo"
+                        checked
+                        class="accent-red-600"
+                        >
+                        <span>💶 Efectivo</span>
+                    </label>
+
+                    <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 p-3 transition hover:bg-gray-50">
+                        <input
+                        type="radio"
+                        name="payment"
+                        value="Tarjeta"
+                        class="accent-red-600"
+                        >
+                        <span>💳 Tarjeta</span>
+                    </label>
+
+                    <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 p-3 transition hover:bg-gray-50">
+                        <input
+                        type="radio"
+                        name="payment"
+                        value="Bizum"
+                        class="accent-red-600"
+                        >
+                        <span>📱 Bizum</span>
+                    </label>
+
+                    </div>
+                </div>
+
+
+                <button
+                    type="button"
+                    onclick="goToReview()"
+                    class="w-full rounded-xl bg-red-600 px-5 py-4 text-lg font-bold text-white transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200"
+                >
+                    ➡️ Continuar y revisar pedido
+                </button>
+
+                <div id="success"></div>
+
+                </div>
+
+            </section>
 
         </section>
+
+
+        <!--LIGHTBOX / IMAGEN GRANDE-->
+
+        <div
+            id="imageModal"
+            class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4"
+            onclick="closeImage()"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Vista ampliada de producto"
+        >
+            <button
+                type="button"
+                onclick="closeImage()"
+                class="absolute right-4 top-4 z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-2xl text-gray-900 shadow-lg transition hover:bg-white"
+                aria-label="Cerrar imagen"
+            >
+                &times;
+            </button>
+
+            <img
+                id="modalImage"
+                src=""
+                alt=""
+                class="max-h-[90vh] max-w-[95vw] rounded-xl object-contain shadow-2xl"
+                onclick="event.stopPropagation()"
+            >
+        </div>
+
+
+        <script>
+        function openImage(src, alt) {
+            const modal = document.getElementById("imageModal");
+            const image = document.getElementById("modalImage");
+
+            image.src = src;
+            image.alt = alt;
+
+            modal.classList.remove("hidden");
+            modal.classList.add("flex");
+
+            document.body.classList.add("overflow-hidden");
+        }
+
+        function closeImage() {
+            const modal = document.getElementById("imageModal");
+            const image = document.getElementById("modalImage");
+
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+
+            image.src = "";
+            image.alt = "";
+
+            document.body.classList.remove("overflow-hidden");
+        }
+
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "Escape") {
+            closeImage();
+            }
+        });
+
+
+        function addProduct(name, price, quantityId) {
+            const quantityInput = document.getElementById(quantityId);
+
+            const quantity = Number(quantityInput.value);
+
+            if (!quantityInput.value || quantity < 1 || !Number.isInteger(quantity)) {
+            quantityInput.focus();
+            quantityInput.reportValidity();
+            return;
+            }
+
+            /*
+            Aquí llamamos a tu función add() original.
+
+            Si tu función add() actualmente acepta:
+                add(nombre, precio)
+
+            puedes modificarla para aceptar:
+                add(nombre, precio, cantidad)
+            */
+
+            add(name, price, quantity);
+        }
+        </script>
+
     </main>
     
 </body>
