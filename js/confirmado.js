@@ -1,7 +1,3 @@
-window.location.href =
-    "confirmado.html?pedido=" +
-    encodeURIComponent(currentOrder.orderNumber);
-
 const params = new URLSearchParams(
     window.location.search
 );
@@ -22,4 +18,5 @@ if (orderNumber) {
 
     orderNumberElement.textContent =
         "No disponible";
+
 }

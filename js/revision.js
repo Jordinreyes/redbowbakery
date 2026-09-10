@@ -71,7 +71,44 @@ function buildDetailsHtml(details) {
     return html;
 }
 
+function confirmAndSend() {
 
+    const requiredAcceptances = [
+        "acceptDelivery",
+        "acceptCancellation",
+        "acceptPayment",
+        "acceptAllergies",
+        "acceptNoPickup",
+    ];
+
+    for (const id of requiredAcceptances) {
+
+        const checkbox =
+            document.getElementById(id);
+
+        if (!checkbox || !checkbox.checked) {
+
+            alert(
+                "⚠️ Antes de confirmar el pedido debes leer y aceptar los cinco apartados de «Leer antes de confirmar»."
+            );
+
+            checkbox?.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+            checkbox?.focus();
+
+            return;
+        }
+    }
+    sessionStorage.removeItem("cart");
+    sessionStorage.removeItem("currentOrder");
+
+    window.location.href =
+        "confirmado.html?pedido=" +
+        encodeURIComponent(currentOrder.orderNumber);
+}
 
 
 function renderReview() {
