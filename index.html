@@ -26,7 +26,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 </head>
 <body>
     <!-- HEADER     -->
@@ -41,7 +41,7 @@
             class="shrink-0"
         >
             <img
-                src="https://redbowbakery.rredbowbakery.workers.dev/pictures/logo.png"
+                src="https://redbowbakery.rredbowbakery.workers.dev/pictures/logo/logo.png"
                 alt="Logo de Red Bow Bakery"
                 class="w-36 md:w-44"
             >
@@ -839,7 +839,7 @@
                             </span>
 
                             <label
-                                for="quantity-cheesecake-fresa"
+                                for="quantity-cheesecake"
                                 class="mt-4 block text-sm font-medium"
                             >
                                 Cantidad: 
@@ -856,14 +856,14 @@
                             >
 
                             <label
-                                for="flavor-cheesecake"
+                                for="flavor-mini-cheesecake"
                                 class="mt-4 block text-sm font-medium"
                             >
-                                Sabor a elegir: 
+                                Sabor a elegir:
                             </label>
 
                             <input
-                                id="flavor-cheesecake"
+                                id="flavor-mini-cheesecake"
                                 type="text"
                                 required
                                 placeholder="Ej: Oreo, Fresa, Lotus..."
@@ -873,7 +873,7 @@
                             <button
                                 type="button"
                                 class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
-                                onclick="addProduct('Mini Cheesecake', 5, 'quantity-cheesecake-')"
+                                onclick="addMiniCheesecake()"
                             >
                                 Añadir
                             </button>
@@ -925,14 +925,14 @@
                             >
 
                             <label
-                                for="flavor-cheesecake"
+                                for="flavor-cheesecake-compartir"
                                 class="mt-4 block text-sm font-medium"
                             >
-                                Sabor a elegir: 
+                                Sabor a elegir:
                             </label>
 
                             <input
-                                id="flavor-cheesecake"
+                                id="flavor-cheesecake-compartir"
                                 type="text"
                                 required
                                 placeholder="Ej: Oreo, Fresa, Lotus..."
@@ -942,7 +942,7 @@
                             <button
                                 type="button"
                                 class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
-                                onclick="addProduct('Cheesecake Tradicional', 15.00, 'quantity_cheesecake-para-compartir')"
+                                onclick="addCheesecakeCompartir()"
                             >
                                 Añadir
                             </button>
@@ -1025,11 +1025,11 @@
                         <button
                             type="button"
                             class="group block w-full cursor-zoom-in"
-                            onclick="openImage('/pictures/tiramisu/tiramisu_compartir.png', 'Mini Tiramisú Clásico compartir')"
+                            onclick="openImage('/pictures/tiramisu/tiramisu_compartir.png', 'Tiramisú Clásico compartir')"
                         >
                             <img
                                 src="/pictures/tiramisu/tiramisu_compartir.png"
-                                alt="Mini Tiramisú Clásico compartir"
+                                alt="Tiramisú Clásico compartir"
                                 class="h-65 w-full object-cover transition duration-300 group-hover:scale-105"
                             >
                         </button>
@@ -1065,7 +1065,7 @@
                             <button
                                 type="button"
                                 class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
-                                onclick="addProduct('Mini Tiramisú Clásico compartir', 15.00, 'quantity-tiramisu-compartir')"
+                                onclick="addProduct('Tiramisú Clásico compartir', 15.00, 'quantity-tiramisu-compartir')"
                             >
                                 Añadir
                             </button>
@@ -1260,7 +1260,7 @@
                             <button
                                 type="button"
                                 class="mt-4 w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
-                                onclick="addProduct('Cupcake Tradicional', 25, 'quantity-cupcake')"
+                                onclick="addCupcake()"
                             >
                                 Añadir
                             </button>
@@ -1371,20 +1371,41 @@
                     >
                 </div>
 
+                <div>
+                    <label
+                        for="allergies"
+                        class="mb-1 block text-sm font-medium text-gray-700"
+                    >
+                        ⚠️ Alergias o intolerancias
+                    </label>
+
+                    <textarea
+                        id="allergies"
+                        rows="3"
+                        placeholder="Indica cualquier alergia o intolerancia alimentaria..."
+                        class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                    ></textarea>
+
+                    <p class="mt-2 text-xs text-gray-500">
+                        Si no tienes ninguna alergia o intolerancia, puedes dejar este campo vacío.
+                    </p>
+                </div>
+
+
 
                 <div>
                     <label
                     for="notes"
                     class="mb-1 block text-sm font-medium text-gray-700"
                     >
-                    Notas (opcional)
+                    Entrega del pedido: 
                     </label>
 
                     <textarea
-                    id="notes"
-                    rows="4"
-                    placeholder="Ej.: recoger el sábado, alergias, decoración..."
-                    class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
+                        id="notes"
+                        rows="4"
+                        placeholder="Ej.: Lunes, Martes. Miercoles...."
+                        class="w-full resize-y rounded-lg border border-gray-300 px-4 py-3 outline-none focus:border-red-500 focus:ring-2 focus:ring-red-200"
                     ></textarea>
                 </div>
 
@@ -1407,15 +1428,6 @@
                         <span>💶 Efectivo</span>
                     </label>
 
-                    <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 p-3 transition hover:bg-gray-50">
-                        <input
-                        type="radio"
-                        name="payment"
-                        value="Tarjeta"
-                        class="accent-red-600"
-                        >
-                        <span>💳 Tarjeta</span>
-                    </label>
 
                     <label class="flex cursor-pointer items-center gap-2 rounded-lg border border-gray-300 p-3 transition hover:bg-gray-50">
                         <input
@@ -1434,7 +1446,7 @@
                 <button
                     type="button"
                     onclick="goToReview()"
-                    class="w-full rounded-xl bg-red-600 px-5 py-4 text-lg font-bold text-white transition hover:bg-red-700 focus:outline-none focus:ring-4 focus:ring-red-200"
+                    class="w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
                 >
                     ➡️ Continuar y revisar pedido
                 </button>
@@ -1449,7 +1461,6 @@
 
 
         <!--LIGHTBOX / IMAGEN GRANDE-->
-
         <div
             id="imageModal"
             class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4"
@@ -1477,66 +1488,11 @@
         </div>
 
 
-        <script>
-        function openImage(src, alt) {
-            const modal = document.getElementById("imageModal");
-            const image = document.getElementById("modalImage");
-
-            image.src = src;
-            image.alt = alt;
-
-            modal.classList.remove("hidden");
-            modal.classList.add("flex");
-
-            document.body.classList.add("overflow-hidden");
-        }
-
-        function closeImage() {
-            const modal = document.getElementById("imageModal");
-            const image = document.getElementById("modalImage");
-
-            modal.classList.add("hidden");
-            modal.classList.remove("flex");
-
-            image.src = "";
-            image.alt = "";
-
-            document.body.classList.remove("overflow-hidden");
-        }
-
-        document.addEventListener("keydown", function (event) {
-            if (event.key === "Escape") {
-            closeImage();
-            }
-        });
-
-
-        function addProduct(name, price, quantityId) {
-            const quantityInput = document.getElementById(quantityId);
-
-            const quantity = Number(quantityInput.value);
-
-            if (!quantityInput.value || quantity < 1 || !Number.isInteger(quantity)) {
-            quantityInput.focus();
-            quantityInput.reportValidity();
-            return;
-            }
-
-            /*
-            Aquí llamamos a tu función add() original.
-
-            Si tu función add() actualmente acepta:
-                add(nombre, precio)
-
-            puedes modificarla para aceptar:
-                add(nombre, precio, cantidad)
-            */
-
-            add(name, price, quantity);
-        }
-        </script>
 
     </main>
     
 </body>
+    <script src="index.js"></script>
+    <script src="/js/carrito.js"></script>
+    <script src="js/foto.js"></script>
 </html>

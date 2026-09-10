@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Pedido confirmado | Red Bow Bakery</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50">
+
+    <main class="flex min-h-screen items-center justify-center px-4 py-10">
+
+        <section
+            class="w-full max-w-xl rounded-3xl bg-white p-8 text-center shadow-xl sm:p-10"
+        >
+
+            <!-- ICONO -->
+            <div
+                class="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100"
+            >
+                <span class="text-4xl">
+                    ✓
+                </span>
+            </div>
+
+            <!-- TITULO -->
+            <h1 class="text-3xl font-bold text-gray-900 sm:text-4xl">
+                ¡Pedido confirmado!
+            </h1>
+
+            <p class="mt-4 text-base leading-relaxed text-gray-600">
+                Hemos recibido tu pedido correctamente.
+                Muchas gracias por confiar en
+                <strong>Red Bow Bakery</strong>.
+            </p>
+
+            <!-- NUMERO PEDIDO -->
+            <div
+                class="mt-8 rounded-2xl bg-gray-50 p-5"
+            >
+
+                <p class="text-sm font-medium text-gray-500">
+                    Número de pedido
+                </p>
+
+                <p
+                    id="orderNumber"
+                    class="mt-2 text-xl font-bold text-red-600"
+                >
+                    Cargando...
+                </p>
+
+            </div>
+
+            <!-- MENSAJE -->
+            <div class="mt-6 text-sm leading-relaxed text-gray-500">
+
+                <p>
+                    Te hemos enviado una confirmación con los
+                    detalles de tu pedido.
+                </p>
+
+                <p class="mt-2">
+                    Si tienes cualquier duda, puedes ponerte
+                    en contacto con nosotros.
+                </p>
+
+            </div>
+
+            <!-- BOTON -->
+            <a
+                href="tienda.html"
+                class="mt-8 inline-flex w-full items-center justify-center rounded-xl bg-red-600 px-6 py-3.5 font-semibold text-white transition hover:bg-red-700 sm:w-auto"
+            >
+                🧁 Volver a la tienda
+            </a>
+
+        </section>
+
+    </main>
+
+    <script src="js/confirmado.js"></script>
+
+</body>
+
+</html>

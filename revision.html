@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Revisar pedido - Red Bow Bakery</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-100">
+
+    <main class="mx-auto max-w-3xl px-4 py-8">
+
+        <div class="rounded-2xl bg-white p-6 shadow-lg sm:p-8">
+
+            <h1 class="mb-2 text-3xl font-bold text-gray-900">
+                🧁 Revisar pedido
+            </h1>
+
+            <p class="mb-6 text-gray-500">
+                Comprueba que todo esté correcto antes de confirmar.
+            </p>
+
+            <p class="mb-6">
+                <strong>Número de pedido:</strong>
+                <span id="orderNumber"></span>
+            </p>
+
+            <!-- PRODUCTOS -->
+            <div id="reviewItems" class="mb-6"></div>
+
+            <!-- TOTAL -->
+            <div class="border-t pt-5 text-right">
+                <span class="text-lg font-medium">
+                    Total:
+                </span>
+
+                <strong
+                    id="reviewTotal"
+                    class="ml-2 text-2xl text-red-600"
+                >
+                    0,00 €
+                </strong>
+            </div>
+
+            <!-- ==========================================
+                LEER ANTES DE CONFIRMAR EL PEDIDO
+            ========================================== -->
+
+            <div class="mt-8 border-t pt-6">
+
+                <h2 class="mb-2 text-2xl font-bold text-gray-900">
+                    📖 Leer antes de confirmar
+                </h2>
+
+                <p class="mb-6 text-sm text-gray-500">
+                    Por favor, lee detenidamente la siguiente información.
+                    Para confirmar tu pedido es necesario aceptar todos los apartados.
+                </p>
+
+
+                <!-- ==========================================
+                    DATOS DE ENTREGA
+                ========================================== -->
+
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 p-5">
+
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">
+                        🚚 Datos de entrega
+                    </h3>
+
+                    <div class="space-y-3 text-sm leading-6 text-gray-700">
+
+                        <p>
+                            Realizamos entregas de nuestros pedidos para que lleguen a tus manos
+                            de forma segura, fresca y en perfectas condiciones.
+                        </p>
+
+                        <p>
+                            Las entregas se realizan en el horario acordado durante la semana,
+                            según la zona y la disponibilidad del servicio.
+                        </p>
+
+                        <p>
+                            El costo de la entrega puede variar dependiendo de la ubicación.
+                            Te informaremos el monto exacto al confirmar tu pedido.
+                        </p>
+
+                        <p>
+                            Si tienes alguna preferencia de horario o una indicación especial,
+                            háznoslo saber y haremos lo posible por adaptarnos.
+                        </p>
+
+                    </div>
+
+                    <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-gray-300 bg-white p-3 hover:bg-gray-50">
+
+                        <input
+                            type="checkbox"
+                            id="acceptDelivery"
+                            class="mt-1 h-5 w-5 shrink-0 accent-red-600"
+                            required
+                        >
+
+                        <span class="text-sm font-medium text-gray-700">
+                            He leído y acepto las condiciones de entrega.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==========================================
+                    CANCELACIONES
+                ========================================== -->
+
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 p-5">
+
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">
+                        ❌ Cancelaciones
+                    </h3>
+
+                    <div class="space-y-3 text-sm leading-6 text-gray-700">
+
+                        <p>
+                            Entendemos que pueden surgir imprevistos.
+                            Por favor, avísanos lo antes posible si necesitas cancelar tu pedido.
+                        </p>
+
+                        <p>
+                            <strong>Cancelaciones con más de 24 horas de antelación:</strong>
+                            se podrá valorar el reembolso del importe abonado, excepto el depósito,
+                            que no será reembolsable.
+                        </p>
+
+                        <p>
+                            <strong>Cancelaciones con menos de 24 horas de antelación:</strong>
+                            el depósito será retenido y, si el pedido ya se encuentra en producción,
+                            podremos retener también el importe correspondiente a los materiales
+                            y trabajo ya realizados.
+                        </p>
+
+                        <p>
+                            Una vez comenzada la elaboración de un pedido personalizado,
+                            no podemos garantizar ningún reembolso.
+                        </p>
+
+                        <p>
+                            Los pedidos no recogidos o en los que el cliente no se encuentre
+                            disponible para recibir la entrega en el horario acordado
+                            no tendrán derecho a reembolso.
+                        </p>
+
+                        <p class="font-medium">
+                            ¡Gracias por tu comprensión!
+                        </p>
+
+                    </div>
+
+                    <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-gray-300 bg-white p-3 hover:bg-gray-50">
+
+                        <input
+                            type="checkbox"
+                            id="acceptCancellation"
+                            class="mt-1 h-5 w-5 shrink-0 accent-red-600"
+                            required
+                        >
+
+                        <span class="text-sm font-medium text-gray-700">
+                            He leído y acepto las condiciones de cancelación.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==========================================
+                    DEPÓSITO Y PAGOS
+                ========================================== -->
+
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 p-5">
+
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">
+                        💳 Depósito y pagos
+                    </h3>
+
+                    <div class="space-y-3 text-sm leading-6 text-gray-700">
+
+                        <p>
+                            Para reservar un pedido personalizado será necesario abonar un
+                            <strong>depósito del 50% del total</strong>.
+                        </p>
+
+                        <p>
+                            El depósito sirve para reservar vuestra fecha y comenzar la
+                            planificación y preparación del pedido.
+                        </p>
+
+                        <p>
+                            <strong>El depósito no es reembolsable</strong>, ya que una vez
+                            confirmado el pedido reservamos espacio en nuestra agenda y podemos
+                            comenzar a adquirir ingredientes o materiales.
+                        </p>
+
+                        <p>
+                            El importe restante deberá quedar abonado antes de la entrega
+                            o recogida del pedido.
+                        </p>
+
+                    </div>
+
+                    <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-gray-300 bg-white p-3 hover:bg-gray-50">
+
+                        <input
+                            type="checkbox"
+                            id="acceptPayment"
+                            class="mt-1 h-5 w-5 shrink-0 accent-red-600"
+                            required
+                        >
+
+                        <span class="text-sm font-medium text-gray-700">
+                            He leído y acepto las condiciones de depósito y pagos.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==========================================
+                    ALERGIAS
+                ========================================== -->
+
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 p-5">
+
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">
+                        ⚠️ Alergias e intolerancias
+                    </h3>
+
+                    <div class="space-y-3 text-sm leading-6 text-gray-700">
+
+                        <p>
+                            En Red Bow Bakery queremos que disfrutes de nuestros productos
+                            con total tranquilidad, por eso te pedimos que nos informes sobre
+                            cualquier alergia o intolerancia alimentaria.
+                        </p>
+
+                        <p>
+                            Puedes indicarnos tus alergias o intolerancias en el apartado de
+                            observaciones al realizar tu pedido, o contactarnos directamente
+                            antes de hacer la compra.
+                        </p>
+
+                        <p>
+                            Aunque tomamos todas las precauciones, en nuestro taller
+                            <strong>no podemos garantizar la ausencia total de trazas
+                            de alérgenos</strong>.
+                        </p>
+
+                        <p>
+                            Los ingredientes pueden variar según la temporada o la disponibilidad,
+                            por lo que te recomendamos siempre confirmarnos tu necesidad.
+                        </p>
+
+                        <p class="font-medium">
+                            ¡Gracias por confiar en nosotros!
+                        </p>
+
+                    </div>
+
+                    <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-gray-300 bg-white p-3 hover:bg-gray-50">
+
+                        <input
+                            type="checkbox"
+                            id="acceptAllergies"
+                            class="mt-1 h-5 w-5 shrink-0 accent-red-600"
+                            required
+                        >
+
+                        <span class="text-sm font-medium text-gray-700">
+                            He leído y acepto la información sobre alergias e intolerancias.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- ==========================================
+                    PEDIDOS NO RECOGIDOS
+                ========================================== -->
+
+                <div class="mb-5 rounded-xl border border-gray-200 bg-gray-50 p-5">
+
+                    <h3 class="mb-3 text-lg font-bold text-gray-900">
+                        📦 Pedidos no recogidos
+                    </h3>
+
+                    <div class="space-y-3 text-sm leading-6 text-gray-700">
+
+                        <p>
+                            Queremos que disfrutes de tus pedidos, por eso te recordamos qué
+                            ocurre en caso de que no puedas recoger tu pedido en la fecha acordada.
+                        </p>
+
+                        <p>
+                            Si no puedes recoger tu pedido, por favor, notifícanos con al menos
+                            <strong>24 horas de antelación</strong> para poder reorganizar
+                            la producción.
+                        </p>
+
+                        <p>
+                            En caso de no avisar, y si no se recoge en la fecha establecida,
+                            el pedido se considerará no recogido.
+                        </p>
+
+                        <p>
+                            <strong>Los pedidos no recogidos no se reembolsarán</strong>,
+                            pero estaremos encantadas de ayudarte a reprogramar otro pedido
+                            en caso de que lo necesites.
+                        </p>
+
+                        <p>
+                            ¡Tu compromiso nos ayuda a reducir el desperdicio de producto y
+                            a mantener la calidad de todo lo que horneamos!
+                        </p>
+
+                    </div>
+
+                    <label class="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-gray-300 bg-white p-3 hover:bg-gray-50">
+
+                        <input
+                            type="checkbox"
+                            id="acceptNoPickup"
+                            class="mt-1 h-5 w-5 shrink-0 accent-red-600"
+                            required
+                        >
+
+                        <span class="text-sm font-medium text-gray-700">
+                            He leído y acepto las condiciones sobre pedidos no recogidos.
+                        </span>
+
+                    </label>
+
+                </div>
+
+
+                <!-- AVISO -->
+
+                <div class="mt-6 rounded-xl border border-red-200 bg-red-50 p-4">
+
+                    <p class="text-sm leading-6 text-red-800">
+                        <strong>⚠️ Importante:</strong>
+                        Para poder confirmar el pedido es necesario leer y aceptar
+                        los cinco apartados anteriores.
+                    </p>
+
+                </div>
+
+            </div>
+
+            <!-- DATOS DEL CLIENTE -->
+            <div class="mt-8 border-t pt-6">
+
+                <h2 class="mb-4 text-xl font-bold">
+                    📋 Datos del pedido
+                </h2>
+
+                <p>
+                    <strong>Nombre:</strong>
+                    <span id="reviewName"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Teléfono:</strong>
+                    <span id="reviewPhone"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Email:</strong>
+                    <span id="reviewEmail"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Dirección:</strong>
+                    <span id="reviewAddress"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Pago:</strong>
+                    <span id="reviewPayment"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Notas:</strong>
+                    <span id="reviewNotes"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>⚠️ Alergias o intolerancias:</strong>
+                    <span id="reviewAllergies"></span>
+                </p>
+
+            </div>
+
+            <!-- BOTONES -->
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+
+                <button
+                    type="button"
+                    onclick="backToShop()"
+                    class="w-full rounded-lg border border-gray-300 px-4 py-3 font-semibold text-gray-700 hover:bg-gray-50"
+                >
+                    ← Volver a la tienda
+                </button>
+
+                <button
+                    type="button"
+                    onclick="confirmAndSend()"
+                    class="w-full rounded-lg bg-red-600 px-4 py-3 font-semibold text-white hover:bg-red-700"
+                >
+                    ✅ Confirmar pedido
+                </button>
+
+            </div>
+
+            <div
+                id="finalMessage"
+                class="mt-5 hidden rounded-lg bg-gray-50 p-4 text-center"
+            ></div>
+
+        </div>
+
+    </main>
+
+    <script src="js/revision.js"></script>
+
+</body>
+
+</html>
