@@ -7,6 +7,34 @@ if (!currentOrder) {
     window.location.href = "index.html";
 }
 
+/* ==============================
+   CONFIGURACIÓN EMAILJS
+============================== */
+
+const EMAILJS_PUBLIC_KEY =
+    "hLHAMKR9VSHDNQbVY";
+
+const EMAILJS_CLIENT_TEMPLATE_ID =
+    "template_slpnl7k";
+
+const EMAILJS_SHOP_TEMPLATE_ID =
+    "template_7iu3j4a";
+
+const EMAILJS_SERVICE_ID =
+    "service_9553bkw";
+
+const SHOP_EMAIL =
+    "rredbowbakery@gmail.com";
+
+
+/* ==============================
+   INICIAR EMAILJS
+============================== */
+
+emailjs.init({
+    publicKey: EMAILJS_PUBLIC_KEY
+});
+
 function escapeHtml(text) {
     return String(text)
         .replace(/&/g, "&amp;")
@@ -102,6 +130,7 @@ function confirmAndSend() {
             return;
         }
     }
+
     sessionStorage.removeItem("cart");
     sessionStorage.removeItem("currentOrder");
 
@@ -109,6 +138,7 @@ function confirmAndSend() {
         "confirmado.html?pedido=" +
         encodeURIComponent(currentOrder.orderNumber);
 }
+
 
 
 function renderReview() {
