@@ -141,8 +141,8 @@ async function confirmAndSend() {
        BOTÓN
     ============================== */
 
-    const button =
-        document.querySelector(".final");
+const button =
+    document.getElementById("confirmButton");
 
     if (button) {
         button.disabled = true;
@@ -396,126 +396,118 @@ function buildOrderItemsHtml() {
 
 
 async function sendOrderEmail(
-  recipient,
-  recipientName,
-  templateId
+    recipient,
+    recipientName,
+    templateId
 ) {
 
-  const o =
-    currentOrder;
+    const o = currentOrder;
 
 
-  /*
-    Comprobar EmailJS
-  */
+    /* ==============================
+       COMPROBAR EMAILJS
+    ============================== */
 
-  if (
-    !emailjsReady ||
-    !window.emailjs
-  ) {
+    if (!window.emailjs) {
 
-    throw new Error(
-      "EmailJS no está cargado o no se pudo inicializar."
-    );
-  }
-
-
-  /*
-    HTML de productos
-  */
-
-  const orderItemsHtml =
-    buildOrderItemsHtml();
-
-
-  /*
-    IMPORTANTE:
-
-    No enviamos PDF
-    ni attachments.
-
-    El logo se carga
-    desde EmailJS.
-  */
-
-
-  const templateParams = {
-
-    to_email:
-      recipient,
-
-    name:
-      recipientName,
-
-    order_number:
-      o.orderNumber,
-
-    customer_name:
-      o.name,
-
-    customer_phone:
-      o.phone,
-
-    customer_email:
-      o.email,
-
-    customer_address:
-      o.address,
-
-    address_link_url:
-      o.addressLink,
-
-    payment_method:
-      o.payment,
-
-    order_items_html:
-      orderItemsHtml,
-
-    total:
-      o.total
-        .toFixed(2)
-        .replace(".", ",") +
-      " EUR",
-
-    notes:
-      o.notes ||
-      "Sin notas",
-  };
-
-
-  console.log(
-    "Enviando email:",
-    {
-      recipient,
-      templateId,
-      templateParams,
+        throw new Error(
+            "EmailJS no está cargado."
+        );
     }
-  );
 
 
-  try {
+    /* ==============================
+       HTML DE PRODUCTOS
+    ============================== */
 
-    return await emailjs.send(
+    const orderItemsHtml =
+        buildOrderItemsHtml();
 
-      EMAILJS_SERVICE_ID,
 
-      templateId,
+    /* ==============================
+       DATOS PARA EMAILJS
+    ============================== */
 
-      templateParams
+    const templateParams = {
 
+        to_email:
+            recipient,
+
+        name:
+            recipientName,
+
+        order_number:
+            o.orderNumber,
+
+        customer_name:
+            o.name,
+
+        customer_phone:
+            o.phone,
+
+        customer_email:
+            o.email,
+
+        customer_address:
+            o.address,
+
+        address_link_url:
+            o.addressLink,
+
+        payment_method:
+            o.payment,
+
+        allergies:
+            o.allergies ||
+            "Ninguna indicada",
+
+        notes:
+            o.notes ||
+            "Sin notas",
+
+        total:
+            o.total
+                .toFixed(2)
+                .replace(".", ",") +
+            " EUR",
+
+        order_items_html:
+            orderItemsHtml
+    };
+
+
+    console.log(
+        "Enviando email:",
+        {
+            recipient,
+            templateId,
+            templateParams
+        }
     );
 
-  } catch (error) {
 
-    console.error(
-      "EmailJS.send() falló:",
-      error
-    );
+    /* ==============================
+       ENVIAR
+    ============================== */
 
-    throw error;
-  }
+    try {
+
+        return await emailjs.send(
+            EMAILJS_SERVICE_ID,
+            templateId,
+            templateParams
+        );
+
+    } catch (error) {
+
+        console.error(
+            "EmailJS.send() falló:",
+            error
+        );
+
+        throw error;
+    }
 }
-
 
 function renderReview() {
 
