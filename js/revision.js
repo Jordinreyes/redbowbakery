@@ -99,7 +99,7 @@ function buildDetailsHtml(details) {
     return html;
 }
 
-function confirmAndSend() {
+async function confirmAndSend() {
 
     const requiredAcceptances = [
         "acceptDelivery",
@@ -108,6 +108,11 @@ function confirmAndSend() {
         "acceptAllergies",
         "acceptNoPickup",
     ];
+
+
+    /* ==============================
+       COMPROBAR ACEPTACIONES
+    ============================== */
 
     for (const id of requiredAcceptances) {
 
@@ -131,14 +136,385 @@ function confirmAndSend() {
         }
     }
 
-    sessionStorage.removeItem("cart");
-    sessionStorage.removeItem("currentOrder");
 
-    window.location.href =
-        "confirmado.html?pedido=" +
-        encodeURIComponent(currentOrder.orderNumber);
+    /* ==============================
+       BOTÓN
+    ============================== */
+
+    const button =
+        document.querySelector(".final");
+
+    if (button) {
+        button.disabled = true;
+        button.textContent =
+            "⏳ Enviando pedido...";
+    }
+
+
+    try {
+
+        /* ==============================
+           EMAIL AL CLIENTE
+        ============================== */
+
+        await sendOrderEmail(
+            currentOrder.email,
+            currentOrder.name,
+            EMAILJS_CLIENT_TEMPLATE_ID
+        );
+
+
+        /* ==============================
+           ESPERAR ENTRE ENVÍOS
+        ============================== */
+
+        await new Promise(
+            resolve =>
+                setTimeout(resolve, 1200)
+        );
+
+
+        /* ==============================
+           EMAIL A LA PASTELERÍA
+        ============================== */
+
+        await sendOrderEmail(
+            SHOP_EMAIL,
+            "RedBow Bakery",
+            EMAILJS_SHOP_TEMPLATE_ID
+        );
+
+
+        /* ==============================
+           TODO CORRECTO
+        ============================== */
+
+        sessionStorage.removeItem("cart");
+        sessionStorage.removeItem("currentOrder");
+
+        window.location.href =
+            "confirmado.html?pedido=" +
+            encodeURIComponent(
+                currentOrder.orderNumber
+            );
+
+
+    } catch (error) {
+
+        console.error(
+            "Error enviando pedido:",
+            error
+        );
+
+        alert(
+            "⚠️ No se ha podido enviar el pedido.\n\n" +
+            "Por favor, inténtalo de nuevo."
+        );
+
+
+        if (button) {
+
+            button.disabled = false;
+
+            button.textContent =
+                "✅ Confirmar pedido";
+        }
+    }
 }
 
+/* ==============================
+   ENVIAR EMAIL
+============================== */
+
+function buildOrderItemsHtml() {
+
+  const o =
+    currentOrder;
+
+
+  return o.items
+
+    .map((x, index) => {
+
+      /*
+        Subtotal
+      */
+
+      const subtotal =
+        x.price * x.qty;
+
+
+      /*
+        Detalles
+      */
+
+      let detailsHtml =
+        "";
+
+
+      if (
+        x.details &&
+        Object.keys(x.details).length
+      ) {
+
+        detailsHtml = `
+          <ul
+            style="
+              margin:8px 0 0 18px;
+              padding:0;
+              color:#666;
+              font-size:13px;
+            "
+          >
+
+            ${
+              x.details.sabor
+                ? `
+                  <li
+                    style="margin-bottom:4px;"
+                  >
+                    <strong>Sabor:</strong>
+                    ${escapeHtml(
+                      x.details.sabor
+                    )}
+                  </li>
+                `
+                : ""
+            }
+
+
+            ${
+              x.details.bizcocho
+                ? `
+                  <li>
+                    <strong>Bizcocho:</strong>
+                    ${escapeHtml(
+                      x.details.bizcocho
+                    )}
+                  </li>
+                `
+                : ""
+            }
+
+          </ul>
+        `;
+      }
+
+
+      return `
+
+        <tr>
+
+          <!-- NÚMERO -->
+
+          <td
+            style="
+              padding:13px 8px 13px 12px;
+              border-bottom:1px solid #eee6e8;
+              font-size:14px;
+              font-weight:700;
+              color:#b4234d;
+              vertical-align:top;
+              width:35px;
+            "
+          >
+            ${index + 1}.
+          </td>
+
+
+          <!-- PRODUCTO -->
+
+          <td
+            style="
+              padding:13px 8px;
+              border-bottom:1px solid #eee6e8;
+              font-size:14px;
+              color:#3d3336;
+              vertical-align:top;
+            "
+          >
+
+            <strong>
+              ${x.qty} ×
+              ${escapeHtml(x.name)}
+            </strong>
+
+
+            <div
+              style="
+                margin-top:4px;
+                color:#777;
+                font-size:12px;
+              "
+            >
+
+              Precio unidad:
+
+              ${x.price
+                .toFixed(2)
+                .replace(".", ",")
+              } €
+
+            </div>
+
+
+            ${detailsHtml}
+
+          </td>
+
+
+          <!-- SUBTOTAL -->
+
+          <td
+            align="right"
+            style="
+              padding:13px 12px 13px 8px;
+              border-bottom:1px solid #eee6e8;
+              font-size:14px;
+              font-weight:700;
+              color:#3d3336;
+              vertical-align:top;
+              white-space:nowrap;
+            "
+          >
+
+            ${subtotal
+              .toFixed(2)
+              .replace(".", ",")
+            } €
+
+          </td>
+
+        </tr>
+
+      `;
+
+    })
+
+    .join("");
+}
+
+
+async function sendOrderEmail(
+  recipient,
+  recipientName,
+  templateId
+) {
+
+  const o =
+    currentOrder;
+
+
+  /*
+    Comprobar EmailJS
+  */
+
+  if (
+    !emailjsReady ||
+    !window.emailjs
+  ) {
+
+    throw new Error(
+      "EmailJS no está cargado o no se pudo inicializar."
+    );
+  }
+
+
+  /*
+    HTML de productos
+  */
+
+  const orderItemsHtml =
+    buildOrderItemsHtml();
+
+
+  /*
+    IMPORTANTE:
+
+    No enviamos PDF
+    ni attachments.
+
+    El logo se carga
+    desde EmailJS.
+  */
+
+
+  const templateParams = {
+
+    to_email:
+      recipient,
+
+    name:
+      recipientName,
+
+    order_number:
+      o.orderNumber,
+
+    customer_name:
+      o.name,
+
+    customer_phone:
+      o.phone,
+
+    customer_email:
+      o.email,
+
+    customer_address:
+      o.address,
+
+    address_link_url:
+      o.addressLink,
+
+    payment_method:
+      o.payment,
+
+    order_items_html:
+      orderItemsHtml,
+
+    total:
+      o.total
+        .toFixed(2)
+        .replace(".", ",") +
+      " EUR",
+
+    notes:
+      o.notes ||
+      "Sin notas",
+  };
+
+
+  console.log(
+    "Enviando email:",
+    {
+      recipient,
+      templateId,
+      templateParams,
+    }
+  );
+
+
+  try {
+
+    return await emailjs.send(
+
+      EMAILJS_SERVICE_ID,
+
+      templateId,
+
+      templateParams
+
+    );
+
+  } catch (error) {
+
+    console.error(
+      "EmailJS.send() falló:",
+      error
+    );
+
+    throw error;
+  }
+}
 
 
 function renderReview() {
