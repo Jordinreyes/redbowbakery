@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css"
+  "build": "npx @tailwindcss/cli -i ./src/input.css -o ./public/output.css"
   },
   "keywords": [],
   "author": "Red Bow",
