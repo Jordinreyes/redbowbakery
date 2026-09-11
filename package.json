@@ -1,0 +1,12 @@
+{
+  "name": "redbow",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @tailwindcss/cli -i ./src/input.css -o ./output.css"
+  },
+  "keywords": [],
+  "author": "Red Bow",
+  "license": "ISC"
+}
