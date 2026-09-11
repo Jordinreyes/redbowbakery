@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "Red Bow",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "tailwindcss": "^4.3.3"
+  }
 }
