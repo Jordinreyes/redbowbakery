@@ -7,6 +7,13 @@ if (!currentOrder) {
     window.location.href = "index.html";
 }
 
+// Guardar los datos del pedido
+sessionStorage.setItem(
+    "currentOrder",
+    JSON.stringify(currentOrder)
+);
+
+;
 /* ==============================
    CONFIGURACIÓN EMAILJS
 ============================== */
@@ -428,53 +435,73 @@ async function sendOrderEmail(
        DATOS PARA EMAILJS
     ============================== */
 
-    const templateParams = {
+const templateParams = {
 
-        to_email:
-            recipient,
+    to_email:
+        recipient,
 
-        name:
-            recipientName,
+    name:
+        recipientName,
 
-        order_number:
-            o.orderNumber,
+    order_number:
+        o.orderNumber,
 
-        customer_name:
-            o.name,
+    customer_name:
+        o.name,
 
-        customer_phone:
-            o.phone,
+    customer_surname:
+        o.surname || "No indicado",
 
-        customer_email:
-            o.email,
+    customer_phone:
+        o.phone,
 
-        customer_address:
-            o.address,
+    customer_email:
+        o.email,
 
-        address_link_url:
-            o.addressLink,
+    customer_address:
+        o.address,
 
-        payment_method:
-            o.payment,
+    street_number:
+        o.streetNumber || "No indicado",
 
-        allergies:
-            o.allergies ||
-            "Ninguna indicada",
+    floor:
+        o.floor || "No indicado",
 
-        notes:
-            o.notes ||
-            "Sin notas",
+    postal_code:
+        o.postalCode || "No indicado",
 
-        total:
-            o.total
-                .toFixed(2)
-                .replace(".", ",") +
-            " EUR",
+    address_link_url:
+        o.addressLink || "",
 
-        order_items_html:
-            orderItemsHtml
-    };
+    location_link_url:
+        o.locationLink || "",
 
+    latitude:
+        o.latitude || "",
+
+    longitude:
+        o.longitude || "",
+
+    payment_method:
+        o.payment,
+
+    allergies:
+        o.allergies ||
+        "Ninguna indicada",
+
+    notes:
+        o.notes ||
+        "Sin notas",
+
+    total:
+        o.total
+            .toFixed(2)
+            .replace(".", ",") +
+        " EUR",
+
+    order_items_html:
+        orderItemsHtml
+};
 
     console.log(
         "Enviando email:",
@@ -509,6 +536,18 @@ async function sendOrderEmail(
     }
 }
 
+// Mostrar los datos de Bizum solamente si el cliente ha elegido Bizum
+const bizumDetails = document.getElementById("bizumDetails");
+
+if (bizumDetails) {
+    if (currentOrder.payment === "Bizum") {
+        bizumDetails.classList.remove("hidden");
+    } else {
+        bizumDetails.classList.add("hidden");
+    }
+}
+
+
 function renderReview() {
 
     document.getElementById("orderNumber").textContent =
@@ -516,6 +555,9 @@ function renderReview() {
 
     document.getElementById("reviewName").textContent =
         currentOrder.name;
+
+    document.getElementById("reviewSurname").textContent =
+        currentOrder.surname || "No indicado";
 
     document.getElementById("reviewPhone").textContent =
         currentOrder.phone;
@@ -526,6 +568,15 @@ function renderReview() {
     document.getElementById("reviewAddress").textContent =
         currentOrder.address;
 
+    document.getElementById("reviewStreetNumber").textContent =
+        currentOrder.streetNumber || "No indicado";
+
+    document.getElementById("reviewFloor").textContent =
+        currentOrder.floor || "No indicado";
+
+    document.getElementById("reviewPostalCode").textContent =
+        currentOrder.postalCode || "No indicado";
+
     document.getElementById("reviewPayment").textContent =
         currentOrder.payment;
 
@@ -533,11 +584,57 @@ function renderReview() {
         currentOrder.notes || "Sin notas";
 
     document.getElementById("reviewAllergies").textContent =
-    currentOrder.allergies || "Ninguna indicada";
+        currentOrder.allergies || "Ninguna indicada";
+
+    // Mostrar los datos de Bizum solo cuando corresponda
+    const bizumDetails = document.getElementById("bizumDetails");
+
+    if (bizumDetails) {
+        if (currentOrder.payment === "Bizum") {
+            bizumDetails.classList.remove("hidden");
+        } else {
+            bizumDetails.classList.add("hidden");
+        }
+    }
+
+    // Enlace de la dirección escrita
+    const addressLink =
+        document.getElementById("reviewAddressLink");
+
+    if (currentOrder.addressLink) {
+
+        addressLink.href =
+            currentOrder.addressLink;
+
+        addressLink.classList.remove("hidden");
+
+    } else {
+
+        addressLink.removeAttribute("href");
+        addressLink.classList.add("hidden");
+
+    }
+
+    // Enlace de la ubicación actual compartida
+    const locationLink =
+        document.getElementById("reviewLocationLink");
+
+    if (currentOrder.locationLink) {
+
+        locationLink.href =
+            currentOrder.locationLink;
+
+        locationLink.classList.remove("hidden");
+
+    } else {
+
+        locationLink.removeAttribute("href");
+        locationLink.classList.add("hidden");
+
+    }
 
     const reviewItems =
         document.getElementById("reviewItems");
-
 
     reviewItems.innerHTML =
         currentOrder.items.map((item) => {
@@ -576,7 +673,6 @@ function renderReview() {
             `;
 
         }).join("");
-
 
     document.getElementById("reviewTotal").textContent =
         currentOrder.total

@@ -396,6 +396,11 @@
                 </p>
 
                 <p class="mt-2">
+                    <strong>Apellidos:</strong>
+                    <span id="reviewSurname"></span>
+                </p>
+
+                <p class="mt-2">
                     <strong>Teléfono:</strong>
                     <span id="reviewPhone"></span>
                 </p>
@@ -408,6 +413,47 @@
                 <p class="mt-2">
                     <strong>Dirección:</strong>
                     <span id="reviewAddress"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Número de calle:</strong>
+                    <span id="reviewStreetNumber"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Piso/Puerta:</strong>
+                    <span id="reviewFloor"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Código postal:</strong>
+                    <span id="reviewPostalCode"></span>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Ubicación en Google Maps:</strong>
+                    <a
+                        id="reviewAddressLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-red-600 underline"
+                    >
+                        Ver dirección en Google Maps
+                    </a>
+                </p>
+
+                <p class="mt-2">
+                    <strong>Ubicación actual compartida:</strong>
+                    <a
+                        id="reviewLocationLink"
+                        href="#"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="text-red-600 underline"
+                    >
+                        Ver ubicación compartida
+                    </a>
                 </p>
 
                 <p class="mt-2">
@@ -425,6 +471,46 @@
                     <span id="reviewAllergies"></span>
                 </p>
 
+            </div>
+
+            <!-- DATOS DE BIZUM -->
+            <div
+                id="bizumDetails"
+                class="mt-6 hidden rounded-lg border border-pink-200 bg-pink-50 p-4"
+            >
+                <h2 class="mb-3 text-lg font-bold text-pink-800">
+                    📱 Datos para realizar el pago por Bizum
+                </h2>
+
+                <div class="space-y-2 text-gray-800">
+                    <p>
+                        <strong>Nombre:</strong>
+                        <span>Red Bow</span>
+                    </p>
+
+                    <p>
+                        <strong>Número:</strong>
+                        <span>123 456 789</span>
+                    </p>
+                </div>
+                
+
+                <p class="mt-4 text-sm text-gray-600">
+                    Realiza el pago mediante Bizum y después confirma tu pedido.
+                </p>
+
+                <div class="border-t pt-5 text-right">
+                    <span class="text-lg font-medium">
+                        Total:
+                    </span>
+
+                    <strong
+                        id="reviewTotal"
+                        class="ml-2 text-2xl text-red-600"
+                    >
+                        0,00 €
+                    </strong>
+                </div>ç
             </div>
 
             <!-- BOTONES -->

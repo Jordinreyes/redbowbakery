@@ -14,11 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const formFields = [
         "name",
+        "surname",
         "phone",
         "email",
         "address",
+        "streetNumber",
+        "floor",
+        "postalCode",
         "notes",
         "allergies",
+        "latitude",
+        "longitude",
+        "locationLink",
     ];
 
     formFields.forEach((id) => {
@@ -36,6 +43,137 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
+
+/* ==============================
+   COMPARTIR UBICACIÓN
+============================== */
+
+function shareLocation() {
+
+    const status =
+        document.getElementById("locationStatus");
+
+    const button =
+        document.getElementById("shareLocationBtn");
+
+    if (!navigator.geolocation) {
+
+        if (status) {
+            status.textContent =
+                "❌ Tu navegador no permite obtener la ubicación.";
+        }
+
+        return;
+    }
+
+    if (status) {
+        status.textContent =
+            "📍 Solicitando ubicación...";
+    }
+
+    if (button) {
+        button.disabled = true;
+        button.textContent =
+            "⏳ Obteniendo ubicación...";
+    }
+
+    navigator.geolocation.getCurrentPosition(
+
+        (position) => {
+
+            const latitude =
+                position.coords.latitude;
+
+            const longitude =
+                position.coords.longitude;
+
+            const locationLink =
+                "https://www.google.com/maps?q=" +
+                encodeURIComponent(
+                    `${latitude},${longitude}`
+                );
+
+            const latitudeInput =
+                document.getElementById("latitude");
+
+            const longitudeInput =
+                document.getElementById("longitude");
+
+            const locationLinkInput =
+                document.getElementById("locationLink");
+
+            if (latitudeInput) {
+                latitudeInput.value = latitude;
+            }
+
+            if (longitudeInput) {
+                longitudeInput.value = longitude;
+            }
+
+            if (locationLinkInput) {
+                locationLinkInput.value =
+                    locationLink;
+            }
+
+            if (status) {
+                status.innerHTML =
+                    "✅ Ubicación obtenida correctamente. " +
+                    `<a href="${escapeHtml(locationLink)}" ` +
+                    'target="_blank" rel="noopener noreferrer" ' +
+                    'class="font-semibold text-red-600 underline">' +
+                    "Ver ubicación en Google Maps</a>";
+            }
+
+            if (button) {
+                button.disabled = false;
+                button.textContent =
+                    "📍 Actualizar ubicación";
+            }
+
+            saveFormData();
+        },
+
+        (error) => {
+
+            let message =
+                "No se ha podido obtener la ubicación.";
+
+            if (error.code === 1) {
+                message =
+                    "Has denegado el permiso de ubicación.";
+            }
+
+            if (error.code === 2) {
+                message =
+                    "No se ha podido determinar tu ubicación.";
+            }
+
+            if (error.code === 3) {
+                message =
+                    "La solicitud de ubicación ha tardado demasiado.";
+            }
+
+            if (status) {
+                status.textContent =
+                    "⚠️ " + message;
+            }
+
+            if (button) {
+                button.disabled = false;
+                button.textContent =
+                    "📍 Compartir mi ubicación";
+            }
+
+        },
+
+        {
+            enableHighAccuracy: true,
+            timeout: 10000,
+            maximumAge: 0
+        }
+
+    );
+}
 
 /* ==============================
    CONFIGURACIÓN EMAILJS
@@ -667,6 +805,13 @@ function getOrderData() {
       .trim();
 
 
+  const surname =
+    document
+        .getElementById("surname")
+        .value
+        .trim();
+
+
   const phone =
     document
       .getElementById("phone")
@@ -687,19 +832,36 @@ function getOrderData() {
       .value
       .trim();
 
+  const streetNumber =
+      document
+          .getElementById("streetNumber")
+          .value
+          .trim();
+
+  const floor =
+      document
+          .getElementById("floor")
+          .value
+          .trim();
+
+  const postalCode =
+      document
+          .getElementById("postalCode")
+          .value
+          .trim();
 
   /*
     Nombre y teléfono
   */
+  if (!name || !surname || !phone) {
 
-  if (!name || !phone) {
+      alert(
+          "Por favor, indica tu nombre, apellidos y teléfono."
+      );
 
-    alert(
-      "Por favor, indica tu nombre y teléfono."
-    );
-
-    return null;
+      return null;
   }
+
 
 
   /*
@@ -774,7 +936,35 @@ function getOrderData() {
       .value
       .trim();
 
+      const latitude =
+          document.getElementById("latitude")?.value || "";
 
+      const longitude =
+          document.getElementById("longitude")?.value || "";
+
+      const locationLink =
+          document.getElementById("locationLink")?.value || "";
+
+  /* CP */
+  if (!address || !streetNumber) {
+
+    alert(
+        "Por favor, indica la calle y el número de calle."
+    );
+
+    return null;
+  }
+
+  if (!postalCode || !/^\d{5}$/.test(postalCode)) {
+
+    alert(
+        "Introduce un código postal válido de 5 dígitos."
+    );
+
+    document.getElementById("postalCode")?.focus();
+
+    return null;
+  }
   /*
     Calcular total
 
@@ -797,9 +987,18 @@ function getOrderData() {
      GOOGLE MAPS
   ========================== */
 
+  const fullAddress = [
+      address,
+      streetNumber,
+      floor,
+      postalCode
+  ]
+      .filter(Boolean)
+      .join(", ");
+
   const addressLink =
-    "https://www.google.com/maps/search/?api=1&query=" +
-    encodeURIComponent(address);
+      "https://www.google.com/maps/search/?api=1&query=" +
+      encodeURIComponent(fullAddress);
 
 
   /*
@@ -808,23 +1007,30 @@ function getOrderData() {
 
   return {
 
-    name,
+      name,
+      surname,
 
-    phone,
+      phone,
+      email,
 
-    email,
+      address,
+      streetNumber,
+      floor,
+      postalCode,
 
-    address,
+      addressLink,
 
-    addressLink,
+      latitude,
+      longitude,
+      locationLink,
 
-    payment,
+      payment,
 
-    notes,
+      notes,
+      allergies,
 
-    allergies,
+      total,
 
-    total,
   };
 }
 
@@ -1100,15 +1306,50 @@ function buildOrderItemsHtml() {
 function saveFormData() {
 
     const data = {
+
         name: document.getElementById("name")?.value || "",
-        phone: document.getElementById("phone")?.value || "",
-        email: document.getElementById("email")?.value || "",
-        address: document.getElementById("address")?.value || "",
-        notes: document.getElementById("notes")?.value || "",
-        allergies: document.getElementById("allergies")?.value || "",
+
+        surname:
+            document.getElementById("surname")?.value || "",
+
+        phone:
+            document.getElementById("phone")?.value || "",
+
+        email:
+            document.getElementById("email")?.value || "",
+
+        address:
+            document.getElementById("address")?.value || "",
+
+        streetNumber:
+            document.getElementById("streetNumber")?.value || "",
+
+        floor:
+            document.getElementById("floor")?.value || "",
+
+        postalCode:
+            document.getElementById("postalCode")?.value || "",
+
+        notes:
+            document.getElementById("notes")?.value || "",
+
+        allergies:
+            document.getElementById("allergies")?.value || "",
+
+        latitude:
+            document.getElementById("latitude")?.value || "",
+
+        longitude:
+            document.getElementById("longitude")?.value || "",
+
+        locationLink:
+            document.getElementById("locationLink")?.value || "",
+
         payment:
-            document.querySelector('input[name="payment"]:checked')?.value ||
-            "Efectivo",
+            document.querySelector(
+                'input[name="payment"]:checked'
+            )?.value || "Efectivo",
+
     };
 
     sessionStorage.setItem(
@@ -1116,6 +1357,7 @@ function saveFormData() {
         JSON.stringify(data)
     );
 }
+
 
 function restoreFormData() {
     const savedData =
@@ -1128,12 +1370,32 @@ function restoreFormData() {
     const data =
         JSON.parse(savedData);
 
-    const name = document.getElementById("name");
-    const phone = document.getElementById("phone");
-    const email = document.getElementById("email");
-    const address = document.getElementById("address");
-    const notes = document.getElementById("notes");
-    const allergies = document.getElementById("allergies");
+    const name = 
+        document.getElementById("name");
+    const phone = 
+        document.getElementById("phone");
+    const email = 
+        document.getElementById("email");
+    const address = 
+        document.getElementById("address");
+    const notes = 
+        document.getElementById("notes");
+    const allergies = 
+        document.getElementById("allergies");
+    const surname =
+        document.getElementById("surname");
+    const streetNumber =
+        document.getElementById("streetNumber");
+    const floor =
+        document.getElementById("floor");
+    const postalCode =
+        document.getElementById("postalCode");
+    const latitude =
+        document.getElementById("latitude");
+    const longitude =
+        document.getElementById("longitude");
+    const locationLink =
+        document.getElementById("locationLink");
 
     if (name) {
         name.value = data.name || "";
@@ -1158,6 +1420,33 @@ function restoreFormData() {
     if (allergies) {
         allergies.value = data.allergies || "";
     }
+    if (surname) {
+    surname.value = data.surname || "";
+    }
+
+    if (streetNumber) {
+        streetNumber.value = data.streetNumber || "";
+    }
+
+    if (floor) {
+        floor.value = data.floor || "";
+    }
+
+    if (postalCode) {
+        postalCode.value = data.postalCode || "";
+    }
+
+    if (latitude) {
+        latitude.value = data.latitude || "";
+    }
+
+    if (longitude) {
+        longitude.value = data.longitude || "";
+    }
+
+    if (locationLink) {
+        locationLink.value = data.locationLink || "";
+    }
 
     if (data.payment) {
         const payment =
@@ -1169,6 +1458,31 @@ function restoreFormData() {
             payment.checked = true;
         }
     }
+
+    if (data.locationLink) {
+
+    const status =
+        document.getElementById("locationStatus");
+
+    const button =
+        document.getElementById("shareLocationBtn");
+
+    if (status) {
+
+        status.innerHTML =
+            "✅ Ubicación guardada. " +
+            `<a href="${escapeHtml(data.locationLink)}" ` +
+            'target="_blank" rel="noopener noreferrer" ' +
+            'class="font-semibold text-red-600 underline">' +
+            "Ver ubicación en Google Maps</a>";
+
+    }
+
+    if (button) {
+        button.textContent =
+            "📍 Actualizar ubicación";
+    }
+}
 }
 
 
