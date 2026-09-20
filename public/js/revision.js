@@ -552,6 +552,9 @@ function renderReview() {
 
     document.getElementById("orderNumber").textContent =
         currentOrder.orderNumber;
+        
+    document.getElementById("orderNumber2").textContent =
+        currentOrder.orderNumber;
 
     document.getElementById("reviewName").textContent =
         currentOrder.name;
@@ -675,6 +678,10 @@ function renderReview() {
         }).join("");
 
     document.getElementById("reviewTotal").textContent =
+        currentOrder.total
+            .toFixed(2)
+            .replace(".", ",") + " €";
+        document.getElementById("reviewTotal2").textContent =
         currentOrder.total
             .toFixed(2)
             .replace(".", ",") + " €";
